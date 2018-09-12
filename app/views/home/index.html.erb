@@ -1,2 +1,27 @@
-<h1>My First App</h1>
-<p>Home</p>
+<h1>My First Stock Portfolio App</h1>
+
+<%= form_tag root_path, :method => 'POST' do %>
+    <div class='form-group'>
+    <%= text_field_tag 'id', nil, placeholder: 'Enter Company Ticker Symbol', size: 50, class: 'form-control' %>
+    <%= submit_tag 'Lookup Stock Quote', class: 'btn btn-primary' %>
+    </div>
+<% end %>
+<br>
+<% stock = StockQuote::Stock.quote("goog") %>
+
+<% if @stock %>
+    <strong>Company Name:</strong> <%= @stock.company_name %><br>
+    <strong>Current Ask:</strong> <%= @stock.iex_ask_price %><br>
+    <strong>Price/Earning Ratio:</strong> <%= @stock.pe_ratio %><br>
+    <strong>Market Cap:</strong> <%= @stock.market_cap %><br>
+    <strong>Stock Open:</strong> <%= @stock.open %><br> 
+    <strong>Day's Range:</strong> <%= @stock.low - @stock.high %><br>
+    <strong>Year High:</strong> <%= @stock.week52_high %><br>
+    <strong>Year Low</strong> <%= @stock.week52_low %><br>
+<% elsif @nothing %>
+    <%= @nothing %>
+<% end %>
+
+<% if @error %>
+    <%= @error %>
+<% end %>
