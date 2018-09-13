@@ -1,0 +1,23 @@
+<% @stock_quote = StockQuote::Stock.quote(@stock.ticker) %>
+
+<div class="panel panel-default col-md-offset-4", style="width: 400px;">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong><%= @stock_quote.company_name %> - <%= @stock_quote.symbol %></strong></h3>
+  </div>
+  <div class="panel-body", style="width: 300px;">
+    <h1><%= @stock_quote.iex_ask_price %></h1><br>
+    <strong>Price/Earning Ratio:</strong> <%= @stock_quote.pe_ratio %><br>
+    <strong>Market Cap:</strong> <%= number_to_human(@stock_quote.market_cap, significant: true) %><br>
+    <strong>Stock Open:</strong> <%= @stock_quote.open %><br> 
+    <strong>Day's Range:</strong> <%= @stock_quote.low - @stock_quote.high %><br>
+    <strong>Year High:</strong> <%= @stock_quote.week52_high %><br>
+    <strong>Year Low</strong> <%= @stock_quote.week52_low %><br>
+    <br>
+  </div>
+  <div class="panel panel-footer">
+    <%= link_to 'Edit', edit_stock_path(@stock), class: "btn btn-default" %>|
+    <%= link_to 'Remove Stock', stock_path(@stock), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>|
+    <%= link_to 'Back', stocks_path, class: "btn btn-default" %>
+  </div>
+</div>
+

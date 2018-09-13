@@ -13,7 +13,7 @@
     <strong>Company Name:</strong> <%= @stock.company_name %><br>
     <strong>Current Ask:</strong> <%= @stock.iex_ask_price %><br>
     <strong>Price/Earning Ratio:</strong> <%= @stock.pe_ratio %><br>
-    <strong>Market Cap:</strong> <%= @stock.market_cap %><br>
+    <strong>Market Cap:</strong> <%= number_to_human(@stock.market_cap, significant: true) %><br>
     <strong>Stock Open:</strong> <%= @stock.open %><br> 
     <strong>Day's Range:</strong> <%= @stock.low - @stock.high %><br>
     <strong>Year High:</strong> <%= @stock.week52_high %><br>
@@ -25,3 +25,10 @@
 <% if @error %>
     <%= @error %>
 <% end %>
+
+<br><br>
+<h3>Not sure what the ticker is for the company you're looking for?</h3>
+<br>
+<h5>Here is a great website to look up company ticker's/symbols:</h5>
+<a href="https://www.nasdaq.com/symbol/?Load=true", target="blank"><img src="https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/062016/untitled-1_79.png?itok=j9w8nuim">
+</a>
